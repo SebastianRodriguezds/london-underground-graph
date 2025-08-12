@@ -184,3 +184,10 @@ plt.tight_layout()
 
 plt.savefig("task2_image.png", dpi=300)
 plt.show()
+
+# Convert 'pos' attribute (tuple) to string to avoid GraphML error
+for node in G.nodes(data=True):
+    coord = node[1]['pos']
+    node[1]['pos'] = f"{coord[0]},{coord[1]}"
+
+nx.write_graphml(G, "london_transport.graphml")
